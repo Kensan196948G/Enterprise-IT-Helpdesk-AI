@@ -1,0 +1,177 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "Enterprise-IT-Helpdesk-AI",
+    "repository": "https://github.com/Kensan196948G/Enterprise-IT-Helpdesk-AI.git",
+    "type": "enterprise-ai-bot"
+  },
+  "agents": {
+    "enabled": true,
+    "subagents": {
+      "code-implementer": {
+        "enabled": true,
+        "path": ".opencode/agent/code-implementer.md",
+        "permissions": ["read", "write", "bash"],
+        "tools": ["read", "write", "bash"]
+      },
+      "test-designer": {
+        "enabled": true,
+        "path": ".opencode/agent/test-designer.md",
+        "permissions": ["read", "write", "bash"],
+        "tools": ["read", "write", "bash"]
+      },
+      "sec-auditor": {
+        "enabled": true,
+        "path": ".opencode/agent/sec-auditor.md",
+        "permissions": ["read"],
+        "tools": ["read", "grep", "bash"]
+      },
+      "arch-reviewer": {
+        "enabled": true,
+        "path": ".opencode/agent/arch-reviewer.md",
+        "permissions": ["read"],
+        "tools": ["read", "grep"]
+      },
+      "ci-specialist": {
+        "enabled": true,
+        "path": ".opencode/agent/ci-specialist.md",
+        "permissions": ["read", "write", "bash"],
+        "tools": ["read", "write", "bash"]
+      },
+      "spec-planner": {
+        "enabled": true,
+        "path": ".opencode/agent/spec-planner.md",
+        "permissions": ["read", "write"],
+        "tools": ["read", "write", "task"]
+      },
+      "ops-runbook": {
+        "enabled": true,
+        "path": ".opencode/agent/ops-runbook.md",
+        "permissions": ["read", "write"],
+        "tools": ["read", "write"]
+      }
+    }
+  },
+  "hooks": {
+    "enabled": true,
+    "parallel_execution": {
+      "enabled": true,
+      "conflict_prevention": true,
+      "max_concurrent_agents": 3
+    },
+    "pre_commit": {
+      "lint": true,
+      "type_check": true,
+      "security_scan": true
+    },
+    "post_commit": {
+      "auto_test": true,
+      "documentation_update": true
+    }
+  },
+  "git_worktree": {
+    "enabled": true,
+    "ai_coding_integration": true,
+    "parallel_feature_development": true,
+    "auto_code_review": true,
+    "worktree_management": true,
+    "large_scale_refactoring": true,
+    "cross_cutting_changes": true,
+    "branch_strategy": {
+      "feature_branches": true,
+      "parallel_workspaces": true,
+      "auto_merge": false,
+      "conflict_resolution": true
+    }
+  },
+  "mcp": {
+    "enabled": true,
+    "tools": [
+      "brave-search",
+      "claude-in-chrome",
+      "context7",
+      "github",
+      "memory",
+      "playwright",
+      "plugin:claude-mem:mem-search",
+      "sequential-thinking"
+    ],
+    "configurations": {
+      "brave-search": {
+        "enabled": true,
+        "api_key_required": true
+      },
+      "claude-in-chrome": {
+        "enabled": true,
+        "chrome_extension_required": true
+      },
+      "context7": {
+        "enabled": true,
+        "context_window": "large"
+      },
+      "github": {
+        "enabled": true,
+        "repository": "https://github.com/Kensan196948G/Enterprise-IT-Helpdesk-AI.git",
+        "token_required": true
+      },
+      "memory": {
+        "enabled": true,
+        "persistent_storage": true
+      },
+      "playwright": {
+        "enabled": true,
+        "browsers": ["chromium", "firefox", "webkit"]
+      },
+      "plugin:claude-mem:mem-search": {
+        "enabled": true,
+        "memory_indexing": true
+      },
+      "sequential-thinking": {
+        "enabled": true,
+        "reasoning_depth": "deep"
+      }
+    }
+  },
+  "standard_features": {
+    "enabled": true,
+    "file_operations": {
+      "read": true,
+      "write": true,
+      "edit": true,
+      "delete": false
+    },
+    "bash_commands": {
+      "git": true,
+      "npm": true,
+      "docker": true,
+      "testing": true
+    },
+    "ai_integration": {
+      "claude": true,
+      "gpt": true,
+      "gemini": true,
+      "perplexity": true
+    },
+    "project_management": {
+      "todo_tracking": true,
+      "progress_reporting": true,
+      "documentation_generation": true
+    }
+  },
+  "repository": {
+    "url": "https://github.com/Kensan196948G/Enterprise-IT-Helpdesk-AI.git",
+    "branch": "main",
+    "auto_sync": true,
+    "backup_enabled": true
+  },
+  "security": {
+    "secret_scanning": true,
+    "permission_checks": true,
+    "audit_logging": true
+  },
+  "performance": {
+    "parallel_processing": true,
+    "caching": true,
+    "optimization": true
+  }
+}
