@@ -1,0 +1,112 @@
+{
+  "name": "enterprise-it-helpdesk-ai",
+  "version": "1.0.0",
+  "description": "Enterprise IT Helpdesk AI - Intelligent support bot for internal IT operations",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "api": "ts-node src/api/API.ts",
+    "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepare": "npm run build",
+    "start-system": "./start-system.sh"
+  },
+  "keywords": [
+    "ai",
+    "helpdesk",
+    "it-support",
+    "chatbot",
+    "enterprise",
+    "claude",
+    "gpt",
+    "gemini"
+  ],
+  "author": "Enterprise IT Helpdesk AI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kensan196948G/Enterprise-IT-Helpdesk-AI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kensan196948G/Enterprise-IT-Helpdesk-AI/issues"
+  },
+  "homepage": "https://github.com/Kensan196948G/Enterprise-IT-Helpdesk-AI#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.17.1",
+    "@google/generative-ai": "^0.11.0",
+    "openai": "^4.28.0",
+    "dotenv": "^16.3.1",
+    "winston": "^3.11.0",
+    "commander": "^12.0.0",
+    "inquirer": "^9.2.12",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "axios": "^1.6.7",
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "sqlite3": "^5.1.6",
+    "sequelize": "^6.37.1",
+    "@opencode-ai/plugin": "1.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/compression": "^1.7.5",
+    "@types/inquirer": "^9.0.7",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.11",
+    "ts-jest": "^29.1.1",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "prettier": "^3.2.5",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/tests"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.ts",
+      "**/?(*.)+(spec|test).ts"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}

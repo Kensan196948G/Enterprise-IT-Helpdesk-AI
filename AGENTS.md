@@ -14,33 +14,48 @@
 ## 🔨 ビルド/リント/テストコマンド
 
 ### ビルドコマンド
+
 ```bash
-# 従来のビルドプロセスはありません - これは主にドキュメント/設計プロジェクトです
-# 個別のコンポーネントが実装されたときに独自のビルドプロセスを持つ可能性があります
+npm run build
+# クリーン後にビルド
+npm run clean && npm run build
+# 開発モード
+npm run dev
 ```
 
 ### リントコマンド
+
 ```bash
-# リントはまだ設定されていません - コードコンポーネントが追加されたときに確立してください
+npm run lint
+# 自動修正付き
+npm run lint:fix
 # 推奨: JavaScript/TypeScript用ESLint, Python用Ruff
 ```
 
 ### テストコマンド
+
 ```bash
-# テストフレームワークはまだ設定されていません - コードコンポーネントが追加されたときに確立してください
+npm test
+# 監視モード
+npm run test:watch
+# カバレッジレポート
+npm run test:coverage
 # 推奨: JavaScript用Jest, Python用pytest
 ```
 
 ### 単一テスト実行
+
 ```bash
-# テストフレームワークが確立されたときの使用パターン:
 # Jest: npm test -- --testNamePattern="特定のテスト名"
 # pytest: python -m pytest tests/test_file.py::TestClass::test_method -v
+# TypeScript型チェック
+npm run type-check
 ```
 
 ## 💻 コードスタイルガイドライン
 
 ### 一般原則
+
 - ✅ **クロスプラットフォーム互換性**: コードはUbuntu LinuxとWindows 11の両方で動作する必要があります
 - ✅ **CLI優先アプローチ**: GUI依存よりもコマンドラインインターフェースを優先
 - ✅ **役割分担**: AIエージェントの責任境界を明確に維持
@@ -49,18 +64,21 @@
 ### 命名規則
 
 #### ファイルとディレクトリ
+
 - ファイル名には `kebab-case` を使用（例: `user-authentication.md`）
 - コード内のコンポーネント/クラス名には `PascalCase` を使用
 - 変数と関数には `camelCase` を使用
 - 定数には `SCREAMING_SNAKE_CASE` を使用
 
 #### AIエージェントの役割
+
 - **Claude**: 意思決定と最終出力責任
 - **GPT**: テンプレート生成と構造化コンテンツ作成
 - **Gemini**: 一般的なIT知識とベストプラクティスの調査
 - **Perplexity**: 引用付きの証拠ベース調査
 
 ### インポート整理
+
 ```typescript
 // タイプごとにグループ化し、アルファベット順に並べる
 // 1. 外部ライブラリ
@@ -78,6 +96,7 @@ import { formatDate } from './utils';
 ### TypeScript/JavaScriptスタイル
 
 #### 型定義
+
 ```typescript
 // 明示的な型を使用し、'any'を避ける
 interface User {
@@ -99,6 +118,7 @@ interface ApiResponse<T> {
 ```
 
 #### エラーハンドリング
+
 ```typescript
 // 常にエラーを明示的に処理する
 try {
@@ -122,6 +142,7 @@ class ValidationError extends Error {
 ```
 
 #### Async/Awaitパターン
+
 ```typescript
 // Promiseよりasync/awaitを優先
 async function processUserRequest(userId: string): Promise<UserData> {
@@ -137,7 +158,7 @@ async function loadDashboardData(userId: string) {
   const [user, stats, notifications] = await Promise.all([
     getUser(userId),
     getUserStats(userId),
-    getNotifications(userId)
+    getNotifications(userId),
   ]);
 
   return { user, stats, notifications };
@@ -147,6 +168,7 @@ async function loadDashboardData(userId: string) {
 ### Pythonスタイル（該当する場合）
 
 #### コード構造
+
 ```python
 # 型ヒントを使用
 from typing import Optional, List, Dict
@@ -174,22 +196,26 @@ def process_request(user_id: str, request_data: Dict[str, any]) -> Optional[Resp
 ### 🔒 セキュリティベストプラクティス
 
 #### 入力検証
+
 - ✅ 常にユーザー入力を検証・サニタイズ
 - ✅ データベース操作にはパラメータ化クエリを使用
 - ✅ 適切な認証と認可を実装
 
 #### シークレット管理
+
 - 🔒 シークレット、APIキー、認証情報をバージョン管理にコミットしない
 - 🔒 環境変数または安全なシークレット管理システムを使用
 - 🔒 適切なアクセス制御を実装
 
 #### エラーメッセージ
+
 - 🚨 エラーメッセージで内部システム詳細を公開しない
 - 🚨 詳細なエラーは内部でログ出力し、外部にはユーザー向けメッセージを表示
 
 ### 📚 ドキュメント標準
 
 #### コードコメント
+
 ```typescript
 // 関数にはJSDocを使用
 /**
@@ -206,6 +232,7 @@ async function authenticateUser(username: string, password: string): Promise<Aut
 ```
 
 #### AIエージェント通信
+
 - Claudeエージェントは推論を説明し、証拠ベースの決定を提供すべき
 - GPTエージェントは正確で構造化された出力生成に集中すべき
 - 調査エージェント（Gemini/Perplexity）は引用とソースを提供すべき
@@ -213,6 +240,7 @@ async function authenticateUser(username: string, password: string): Promise<Aut
 ### 🖥️ クロスプラットフォーム互換性
 
 #### パス処理
+
 ```typescript
 // 文字列連結ではなくpath.join()を使用
 import path from 'path';
@@ -224,6 +252,7 @@ const crossPlatformPath = path.join('data', 'users', userId, 'profile.json');
 ```
 
 #### 環境変数
+
 - 環境固有の設定には`.env`ファイルを使用
 - オプション設定には適切なデフォルトを提供
 - 必須の環境変数を文書化
@@ -231,6 +260,7 @@ const crossPlatformPath = path.join('data', 'users', userId, 'profile.json');
 ### 🧪 テストガイドライン
 
 #### 単体テスト
+
 ```typescript
 describe('UserAuthentication', () => {
   it('should authenticate valid users', async () => {
@@ -246,6 +276,7 @@ describe('UserAuthentication', () => {
 ```
 
 #### 統合テスト
+
 - AIエージェントの相互作用をテスト
 - クロスプラットフォーム互換性を検証
 - エラーシナリオと回復をテスト
@@ -280,6 +311,7 @@ docs(readme): インストール手順を更新
 ### 🔧 OpenCodeエージェントガイドライン
 
 #### 利用可能な専門エージェント
+
 - 💻 **code-implementer**: 実際のコード実装とファイル編集を処理
 - 🧪 **test-designer**: テストスイートの作成と管理
 - 🔒 **sec-auditor**: セキュリティレビューと脆弱性評価
@@ -289,6 +321,7 @@ docs(readme): インストール手順を更新
 - 📖 **ops-runbook**: 運用手順とランブック
 
 #### エージェント協働プロトコル
+
 - 各エージェントは特定の権限と責任を持つ
 - セキュリティ関連の変更にはsec-auditorのレビューが必要
 - アーキテクチャ変更にはarch-reviewerの承認が必要
